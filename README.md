@@ -13,51 +13,73 @@ A simple Laravel-based Student Management System built for the midterm assignmen
 
 ## Setup Instructions
 
-1. Clone the project into your local environment.
-2. Install dependencies:
-   ```bash
-   composer install
-   ```
-3. Copy the environment file:
-   ```bash
-   cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   copy .env.example .env
-   ```
-4. Generate the application key:
-   ```bash
-   php artisan key:generate
-   ```
-5. Create a MySQL database (e.g., `midterm`) in phpMyAdmin or your MySQL client.
-6. Configure the `.env` database settings (see checklist below).
-7. Run the database migration:
-   ```bash
-   php artisan migrate
-   ```
-8. (Optional) Seed sample student data:
-   ```bash
-   php artisan db:seed
-   ```
-9. Start the application:
-   ```bash
-   php artisan serve
-   ```
-10. Open the app in your browser at `http://127.0.0.1:8000/students`.
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/inasal-2k/Midterm-Student-Management.git
+cd Midterm-Student-Management
+```
+
+2. **Install dependencies:**
+
+```bash
+composer install
+```
+
+3. **Configure the environment:**
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+On Windows:
+
+```powershell
+copy .env.example .env
+php artisan key:generate
+```
+
+4. **Create the database and import:**
+
+Create a MySQL database named `midterm`, then import the provided SQL dump:
+
+```bash
+mysql -u root -e "CREATE DATABASE midterm;"
+mysql -u root midterm < midterm.sql
+```
+
+Alternatively, you can run migrations and seeders instead of importing the SQL dump:
+
+```bash
+php artisan migrate --seed
+```
+
+5. **Update `.env` database settings:**
+
+Set the following in your `.env` file:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=midterm
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+6. **Start the application:**
+
+```bash
+php artisan serve
+```
+
+7. **Open in browser:**
+
+Go to `http://127.0.0.1:8000/students`
 
 > **Important:** Always use `php artisan serve` to run the application. Do not use a generic PHP server extension pointing at a Laravel file — the framework needs its front controller to load correctly.
 
-## Environment Configuration Checklist
-
-Update the following values in `.env` to match your local database:
-
-- `DB_CONNECTION` — usually `mysql`
-- `DB_HOST` — usually `127.0.0.1`
-- `DB_PORT` — usually `3306`
-- `DB_DATABASE` — the database name you created (e.g., `midterm`)
-- `DB_USERNAME` — your MySQL username (e.g., `root`)
-- `DB_PASSWORD` — your MySQL password
 
 ## Project Structure
 
